@@ -2,7 +2,9 @@ const router = require('express').Router();
 const {
   getThoughts,
   getSingleThought,
-  createThought
+  createThought,
+  updateThought,
+  addReaction
 } = require('../../controllers/thoughtController.js');
 
 // /api/thoughts
@@ -12,7 +14,11 @@ router.route('/').get(getThoughts).post(createThought);
 router
   .route('/:thoughtId')
   .get(getSingleThought)
-//   .put(updateCourse)
+  .put(updateThought)
 //   .delete(deleteCourse);
+
+router.route('/:thoughtId/reactions')
+.post(addReaction)
+
 
 module.exports = router;
