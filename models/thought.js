@@ -1,5 +1,6 @@
 const { Schema, model, Types } = require('mongoose');
 
+// Schema for reactions 
 const reactionSchema = new Schema({
   reactionId: {
     type: Schema.Types.ObjectId,
@@ -22,7 +23,7 @@ const reactionSchema = new Schema({
 })
 
 
-// Schema to create a course model
+// Schema to create a thought model
 const thoughtSchema = new Schema(
   {
     thoughtText: {
@@ -49,14 +50,14 @@ const thoughtSchema = new Schema(
     id: false,
   }
 );
-
+// Virtual that gets the total amount of reactions for a thought
 thoughtSchema
   .virtual('reactionCount')
   .get(function () {
     return this.reactions.length;
   });
 
-
+// Creates a thought model using the thought schema
 const Thought = model('thought', thoughtSchema);
-
+// exports the Thought model
 module.exports = Thought;
