@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 
-// Schema to create Student model
+// Schema to create user model
 const userSchema = new Schema(
   {
     username: {
@@ -36,13 +36,14 @@ const userSchema = new Schema(
     id: false,
   }
 );
-
+// Virtuals tgat gets that total amount of friends a user has
 userSchema
   .virtual('friendCount')
   .get(function () {
     return this.friends.length;
   });
-
+// creates a user model using the user schema
 const User = model('user', userSchema);
 
+// exports the User model
 module.exports = User;
